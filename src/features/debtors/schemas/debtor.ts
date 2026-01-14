@@ -11,7 +11,7 @@ const optionalEmail = z
   .optional();
 
 export const debtorSchema = z.object({
-  fullName: z.string().min(1),
+  fullName: z.string().min(1, "El nombre es requerido"),
   phone: optionalString,
   email: optionalEmail,
   notes: optionalString,

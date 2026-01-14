@@ -14,12 +14,12 @@ import {
 const data = {
   navMain: [
     {
-      title: "Dashboard",
+      title: "Panel",
       url: "/dashboard",
       icon: LayoutDashboardIcon,
     },
     {
-      title: "Debtors",
+      title: "Deudores",
       url: "/debtors",
       icon: UserIcon,
     },

@@ -56,8 +56,6 @@ export function DebtorForm({
   );
 
   const labelButton = useMemo(() => {
-    console.log({ id, loading });
-
     if (id) {
       return loading ? "Actualizando..." : "Actualizar";
     }
@@ -71,10 +69,17 @@ export function DebtorForm({
           control={form.control}
           name="fullName"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre completo</FormLabel>
+            <FormItem className="space-y-2">
+              <FormLabel className="text-sm font-medium">
+                Nombre completo
+              </FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="Juan Pérez"
+                  disabled={disabled}
+                  className="h-11 transition-all"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -84,8 +89,8 @@ export function DebtorForm({
           control={form.control}
           name="phone"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Phone</FormLabel>
+            <FormItem className="space-y-2">
+              <FormLabel className="text-sm font-medium">Teléfono</FormLabel>
               <FormControl>
                 <PhoneInput
                   {...field}
@@ -101,10 +106,18 @@ export function DebtorForm({
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
+            <FormItem className="space-y-2">
+              <FormLabel className="text-sm font-medium">
+                Correo electrónico
+              </FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  type="email"
+                  placeholder="email@example.com"
+                  disabled={disabled}
+                  className="h-11 transition-all"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -114,16 +127,22 @@ export function DebtorForm({
           control={form.control}
           name="notes"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Notas</FormLabel>
+            <FormItem className="space-y-2">
+              <FormLabel className="text-sm font-medium">Notas</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <textarea
+                  {...field}
+                  placeholder="Notas adicionales sobre el deudor..."
+                  disabled={disabled}
+                  rows={4}
+                  className="flex min-h-[80px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={disabled || loading}>
+        <Button type="submit" disabled={disabled || loading} className="w-full">
           {labelButton}
         </Button>
       </form>

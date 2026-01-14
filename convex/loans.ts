@@ -43,7 +43,7 @@ export const createLoanWithInstallments = mutation({
   },
   handler: async (ctx, args) => {
     const userId = await getAuthUserId(ctx);
-    if (!userId) throw new Error("Sin autorización"); // :contentReference[oaicite:5]{index=5}
+    if (!userId) throw new Error("Sin autorización");
 
     const now = Date.now();
 
@@ -92,6 +92,6 @@ export const createLoanWithInstallments = mutation({
       });
     }
 
-    return { loanId };
+    return await ctx.db.get(loanId);
   },
 });
