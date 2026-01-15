@@ -1,11 +1,14 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
+import { formatPhoneNumber } from "react-phone-number-input";
 
 import { Checkbox } from "@/components/ui/checkbox";
 
-import { Doc } from "../../../../convex/_generated/dataModel";
-import { Actions } from "./actions";
 import { DataTableColumnHeader } from "@/components/data-table-column-header";
+
+import { Actions } from "./actions";
+
+import { Doc } from "../../../../convex/_generated/dataModel";
 
 export const columns: ColumnDef<Doc<"debtors">>[] = [
   {
@@ -40,7 +43,7 @@ export const columns: ColumnDef<Doc<"debtors">>[] = [
       return <DataTableColumnHeader column={column} title="Teléfono" />;
     },
     cell: ({ row }) => {
-      return <span>{row.original.phone || "-"}</span>;
+      return <span>{formatPhoneNumber(row.original.phone || "") || "-"}</span>;
     },
   },
   {

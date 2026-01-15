@@ -68,7 +68,7 @@ export function DataTableColumnHeader<TData, TValue>({
             size="sm"
             className={cn(
               "h-8",
-              "hover:bg-primary/75 text-white hover:text-purple-100",
+              "hover:bg-primary/75 text-black dark:text-white hover:text-purple-100",
               "focus:ring-primary focus:ring-2 focus:ring-offset-2"
             )}
             aria-label={`Opciones para columna ${title}`}>

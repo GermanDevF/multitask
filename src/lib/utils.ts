@@ -13,9 +13,12 @@ export function todayISODate() {
   return `${y}-${m}-${day}`;
 }
 
-export function dateInputToMs(value: string) {
-  const [y, m, d] = value.split("-").map((n) => Number(n));
-  return new Date(y, m - 1, d).getTime();
+export function dateInputToMs(value: Date | string) {
+  if (typeof value === "string") {
+    const [y, m, d] = value.split("-").map((n) => Number(n));
+    return new Date(y, m - 1, d).getTime();
+  }
+  return value.getTime();
 }
 
 export function moneyToCents(value: string) {
