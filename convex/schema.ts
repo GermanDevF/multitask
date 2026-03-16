@@ -41,7 +41,7 @@ export default defineSchema({
     frequency: v.union(
       v.literal("WEEKLY"),
       v.literal("BIWEEKLY"),
-      v.literal("MONTHLY")
+      v.literal("MONTHLY"),
     ),
 
     interestType: v.union(v.literal("NONE"), v.literal("SIMPLE")),
@@ -51,7 +51,7 @@ export default defineSchema({
       v.literal("ACTIVE"),
       v.literal("PAID"),
       v.literal("CANCELLED"),
-      v.literal("DEFAULTED")
+      v.literal("DEFAULTED"),
     ),
 
     notes: v.optional(v.string()),
@@ -79,7 +79,7 @@ export default defineSchema({
       v.literal("PENDING"),
       v.literal("PAID"),
       v.literal("LATE"),
-      v.literal("CANCELLED")
+      v.literal("CANCELLED"),
     ),
 
     paidAt: v.optional(v.number()),
@@ -108,8 +108,8 @@ export default defineSchema({
         v.literal("CASH"),
         v.literal("TRANSFER"),
         v.literal("CARD"),
-        v.literal("OTHER")
-      )
+        v.literal("OTHER"),
+      ),
     ),
     reference: v.optional(v.string()),
     notes: v.optional(v.string()),
@@ -119,4 +119,16 @@ export default defineSchema({
     .index("by_loan", ["loanId"])
     .index("by_user_paymentDate", ["userId", "paymentDate"])
     .index("by_installment", ["installmentId"]),
+  expenses: defineTable({
+    description: v.string(),
+    amountCents: v.number(),
+    currency: v.string(), // "MXN" / "USD", igual que loans
+    category: v.string(), // FOOD, RENT, UTILITIES, OTHER, etc.
+    paidByName: v.string(), // o paidByUserId: v.id("users") si ya tienes usuarios
+    date: v.number(), // timestamp en ms
+    createdAt: v.number(),
+    updatedAt: v.number(),
+  })
+    .index("by_date", ["date"])
+    .index("by_paidBy", ["paidByName"]),
 });

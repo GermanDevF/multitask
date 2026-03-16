@@ -50,11 +50,11 @@ export const Actions = ({ id }: Props) => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="size-8 p-0">
+          <Button variant="ghost" className="size-10 p-0 md:size-8">
             <MoreHorizontal className="size-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="min-w-[160px]">
           <DropdownMenuItem
             disabled={isDeleting}
             onClick={() => onOpenInstallments(id)}

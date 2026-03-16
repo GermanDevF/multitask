@@ -1,5 +1,5 @@
 "use client";
-import { CreditCardIcon, LayoutDashboardIcon, UserIcon } from "lucide-react";
+import { CreditCardIcon, LayoutDashboardIcon, ShoppingBasket, UserIcon } from "lucide-react";
 
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
@@ -27,6 +27,11 @@ const data = {
       title: "Préstamos",
       url: "/loans",
       icon: CreditCardIcon,
+    },
+    {
+      title: "Gastos del Hogar",
+      url: "/expenses",
+      icon: ShoppingBasket,
     },
   ],
 };

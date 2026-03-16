@@ -24,6 +24,12 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 
+declare module "@tanstack/react-table" {
+  interface ColumnMeta<TData, TValue> {
+    className?: string;
+  }
+}
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -37,11 +43,11 @@ export function DataTable<TData, TValue>({
   loading,
   onEdit,
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+  const [ sorting, setSorting ] = React.useState<SortingState>([]);
+  const [ columnFilters, setColumnFilters ] = React.useState<ColumnFiltersState>(
     []
   );
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [ rowSelection, setRowSelection ] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -76,23 +82,22 @@ export function DataTable<TData, TValue>({
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header, index, array) => {
-                  return (
-                    <TableHead
-                      key={header.id}
-                      className={cn(
-                        index === 0 && "rounded-tl-md",
-                        index === array.length - 1 && "rounded-tr-md"
-                      )}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
-                    </TableHead>
-                  );
-                })}
+                {headerGroup.headers.map((header, index, array) => (
+                  <TableHead
+                    key={header.id}
+                    className={cn(
+                      index === 0 && "rounded-tl-md",
+                      index === array.length - 1 && "rounded-tr-md",
+                      header.column.columnDef.meta?.className
+                    )}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                  </TableHead>
+                ))}
               </TableRow>
             ))}
           </TableHeader>
@@ -137,7 +142,9 @@ export function DataTable<TData, TValue>({
                     onEdit(row.original);
                   }}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      className={cn(cell.column.columnDef.meta?.className)}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

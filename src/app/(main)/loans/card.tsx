@@ -25,23 +25,25 @@ export default function LoansCard() {
     <>
       <div className="mx-auto w-full max-w-screen-2xl pb-10">
         <Card className="border-none shadow-none drop-shadow-none">
-          <CardHeader className="flex flex-col gap-y-2 lg:flex-row lg:items-center lg:justify-between px-4">
+          <CardHeader className="flex flex-col gap-y-2 px-2 sm:flex-row sm:items-center sm:justify-between sm:px-4">
             <CardTitle className="line-clamp-1 text-xl">Préstamos</CardTitle>
             <Button
               size="sm"
-              className="w-full lg:w-auto"
+              className="w-full sm:w-auto"
               onClick={() => newLoan.onOpen()}>
               <PlusIcon className="size-4" />
               Agregar préstamo
             </Button>
           </CardHeader>
           <CardContent>
-            <DataTable
-              columns={columns}
-              data={loansQuery?.loans ?? []}
-              loading={isLoading}
-              onEdit={(row) => onOpen(row._id)}
-            />
+            <div className="overflow-x-auto">
+              <DataTable
+                columns={columns}
+                data={loansQuery?.loans ?? []}
+                loading={isLoading}
+                onEdit={(row) => onOpen(row._id)}
+              />
+            </div>
           </CardContent>
         </Card>
       </div>

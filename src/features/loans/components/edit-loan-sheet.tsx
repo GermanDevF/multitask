@@ -119,7 +119,9 @@ export function EditLoanSheet() {
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="right" className="overflow-y-auto w-md">
+      <SheetContent
+        side="right"
+        className="overflow-y-auto w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl">
         <SheetHeader>
           <SheetTitle>Editar préstamo</SheetTitle>
           <SheetDescription>

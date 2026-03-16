@@ -505,7 +505,7 @@ export function LoanForm({
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-sm text-muted-foreground">
                     Monto total:
                   </span>
@@ -516,7 +516,7 @@ export function LoanForm({
                     )}
                   </span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-sm text-muted-foreground">
                     Número de cuotas:
                   </span>
@@ -524,7 +524,7 @@ export function LoanForm({
                     {loanSummary.installments}
                   </span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-sm text-muted-foreground">
                     Monto por cuota:
                   </span>
@@ -535,7 +535,7 @@ export function LoanForm({
                     )}
                   </span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between">
                   <span className="text-sm text-muted-foreground">
                     Frecuencia:
                   </span>
@@ -544,7 +544,7 @@ export function LoanForm({
                   </span>
                 </div>
                 {loanSummary.hasInterest && (
-                  <div className="flex justify-between items-center">
+                  <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between">
                     <span className="text-sm text-muted-foreground">
                       Tasa de interés:
                     </span>

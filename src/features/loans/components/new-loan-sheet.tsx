@@ -74,7 +74,9 @@ export function NewLoanSheet() {
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="right" className="overflow-y-auto">
+      <SheetContent
+        side="right"
+        className="overflow-y-auto w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl">
         <SheetHeader>
           <SheetTitle>Nuevo préstamo</SheetTitle>
           <SheetDescription>

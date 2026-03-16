@@ -135,6 +135,9 @@ export const columns: ColumnDef<LoanWithDebtor>[] = [
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="Cuotas" />;
     },
+    meta: {
+      className: "hidden md:table-cell",
+    },
     cell: ({ row }) => {
       const loan = row.original;
       const paidCount =
@@ -152,6 +155,9 @@ export const columns: ColumnDef<LoanWithDebtor>[] = [
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="Frecuencia" />;
     },
+    meta: {
+      className: "hidden md:table-cell",
+    },
     cell: ({ row }) => {
       return (
         <span className="text-sm">
@@ -164,6 +170,9 @@ export const columns: ColumnDef<LoanWithDebtor>[] = [
     accessorKey: "interestRateBps",
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="Tasa de interés" />;
+    },
+    meta: {
+      className: "hidden md:table-cell",
     },
     cell: ({ row }) => {
       const loan = row.original;
@@ -179,6 +188,9 @@ export const columns: ColumnDef<LoanWithDebtor>[] = [
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="Primera cuota" />;
     },
+    meta: {
+      className: "hidden lg:table-cell",
+    },
     cell: ({ row }) => {
       return (
         <span className="text-sm">{formatDate(row.original.firstDueDate)}</span>
@@ -189,6 +201,9 @@ export const columns: ColumnDef<LoanWithDebtor>[] = [
     accessorKey: "startDate",
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="Fecha de inicio" />;
+    },
+    meta: {
+      className: "hidden lg:table-cell",
     },
     cell: ({ row }) => {
       return (
@@ -202,6 +217,9 @@ export const columns: ColumnDef<LoanWithDebtor>[] = [
     accessorKey: "notes",
     header: ({ column }) => {
       return <DataTableColumnHeader column={column} title="Notas" />;
+    },
+    meta: {
+      className: "hidden lg:table-cell",
     },
     cell: ({ row }) => {
       const notes = row.original.notes;

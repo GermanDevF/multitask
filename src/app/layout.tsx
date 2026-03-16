@@ -44,9 +44,11 @@ export default function RootLayout({
               defaultTheme="system"
               enableSystem
               disableTransitionOnChange>
-              {children}
-              <Toaster />
-              <Sheets />
+              <div className="min-h-screen bg-background text-foreground flex flex-col">
+                <main className="flex-1">{children}</main>
+                <Toaster />
+                <Sheets />
+              </div>
             </ThemeProvider>
           </ConvexClientProvider>
         </body>

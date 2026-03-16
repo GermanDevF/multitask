@@ -183,8 +183,8 @@ export function InstallmentsSheet() {
             </div>
 
             {/* Tabla de cuotas */}
-            <div className="rounded-lg border">
-              <Table>
+            <div className="overflow-x-auto">
+              <Table className="min-w-full rounded-lg border">
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-16">#</TableHead>
@@ -218,7 +218,9 @@ export function InstallmentsSheet() {
                         <TableRow
                           key={installment._id}
                           className={
-                            isOverdue ? "bg-red-50 dark:bg-red-950/20" : ""
+                            isOverdue
+                              ? "bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/40"
+                              : ""
                           }>
                           <TableCell className="font-medium">
                             {installment.number}
@@ -264,6 +266,7 @@ export function InstallmentsSheet() {
                               <Button
                                 size="sm"
                                 variant="outline"
+                                className="w-full sm:w-auto"
                                 onClick={() =>
                                   onOpenPayment(loanId, installment._id)
                                 }>
