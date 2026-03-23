@@ -13,6 +13,12 @@ import type * as debtors from "../debtors.js";
 import type * as expenses from "../expenses.js";
 import type * as http from "../http.js";
 import type * as loans from "../loans.js";
+import type * as schema_debtors from "../schema/debtors.js";
+import type * as schema_expenses from "../schema/expenses.js";
+import type * as schema_index from "../schema/index.js";
+import type * as schema_installments from "../schema/installments.js";
+import type * as schema_loans from "../schema/loans.js";
+import type * as schema_payments from "../schema/payments.js";
 import type * as users from "../users.js";
 
 import type {
@@ -27,6 +33,12 @@ declare const fullApi: ApiFromModules<{
   expenses: typeof expenses;
   http: typeof http;
   loans: typeof loans;
+  "schema/debtors": typeof schema_debtors;
+  "schema/expenses": typeof schema_expenses;
+  "schema/index": typeof schema_index;
+  "schema/installments": typeof schema_installments;
+  "schema/loans": typeof schema_loans;
+  "schema/payments": typeof schema_payments;
   users: typeof users;
 }>;
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { Edit, MoreHorizontal, Trash2, List } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,6 @@ import { useConfirm } from "@/hooks/use-confirm";
 
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useOpenLoan } from "@/features/loans/hooks/use-open-loan";
-import { useOpenInstallments } from "@/features/loans/hooks/use-open-installments";
 import { useRemoveLoan } from "@/features/loans/api/use-remove-loan";
 
 type Props = {
@@ -24,11 +24,11 @@ type Props = {
 
 export const Actions = ({ id }: Props) => {
   const [ConfirmDialog, confirm] = useConfirm(
-    "¿Estás seguro de querer eliminar este préstamo?",
-    "Esta acción no puede ser deshacer."
+    "¿Eliminar este préstamo?",
+    "Esta acción no se puede deshacer."
   );
+  const router = useRouter();
   const { onOpen } = useOpenLoan();
-  const { onOpen: onOpenInstallments } = useOpenInstallments();
 
   const { mutate: removeLoan, isPending: isDeleting } = useRemoveLoan();
 
@@ -48,37 +48,46 @@ export const Actions = ({ id }: Props) => {
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="size-10 p-0 md:size-8">
-            <MoreHorizontal className="size-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="min-w-[160px]">
-          <DropdownMenuItem
-            disabled={isDeleting}
-            onClick={() => onOpenInstallments(id)}
-            className="cursor-pointer">
-            <List className="size-4" />
-            Ver cuotas
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            disabled={isDeleting}
-            onClick={() => onOpen(id)}
-            className="cursor-pointer">
-            <Edit className="size-4" />
-            Editar
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            disabled={isDeleting}
-            onClick={handleDelete}
-            className="cursor-pointer"
-            variant="destructive">
-            <Trash2 className="size-4" />
-            Eliminar
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div
+        className="flex justify-end"
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-9 shrink-0 md:size-8"
+              aria-label="Acciones del préstamo">
+              <MoreHorizontal className="size-4" aria-hidden />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="min-w-32">
+            <DropdownMenuItem
+              disabled={isDeleting}
+              onClick={() => router.push(`/loans/${id}/installments`)}
+              className="cursor-pointer">
+              <List className="size-4" aria-hidden />
+              Ver cuotas
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              disabled={isDeleting}
+              onClick={() => onOpen(id)}
+              className="cursor-pointer">
+              <Edit className="size-4" aria-hidden />
+              Editar
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              disabled={isDeleting}
+              onClick={handleDelete}
+              className="cursor-pointer"
+              variant="destructive">
+              <Trash2 className="size-4" aria-hidden />
+              Eliminar
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
       <ConfirmDialog />
     </>
   );

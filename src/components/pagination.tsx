@@ -45,8 +45,8 @@ export function DataTablePagination<TData>({
     if (selectedRowsCount === 0) return null;
     return (
       <span className="text-muted-foreground text-sm">
-        {selectedRowsCount} of {totalRows}{" "}
-        {selectedRowsCount === 1 ? "row selected" : "rows selected"}
+        {selectedRowsCount} de {totalRows}{" "}
+        {selectedRowsCount === 1 ? "fila seleccionada" : "filas seleccionadas"}
       </span>
     );
   }, [selectedRowsCount, totalRows]);
@@ -54,12 +54,12 @@ export function DataTablePagination<TData>({
   // Información del rango de items
   const rangeInfo = useMemo(() => {
     if (totalRows === 0) {
-      return <span className="text-muted-foreground text-sm">No results</span>;
+      return <span className="text-muted-foreground text-sm">Sin resultados</span>;
     }
     return (
       <span className="text-muted-foreground text-sm">
-        Showing {startItem} - {endItem} of {totalRows}{" "}
-        {totalRows === 1 ? "result" : "results"}
+        Mostrando {startItem}–{endItem} de {totalRows}{" "}
+        {totalRows === 1 ? "resultado" : "resultados"}
       </span>
     );
   }, [startItem, endItem, totalRows]);
@@ -76,7 +76,7 @@ export function DataTablePagination<TData>({
       <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:gap-8">
         {/* Selector de filas por página */}
         <div className="flex items-center gap-2">
-          <p className="text-sm font-medium whitespace-nowrap">Rows per page</p>
+          <p className="text-sm font-medium whitespace-nowrap">Filas por página</p>
           <Select
             value={`${pageSize}`}
             onValueChange={(value) => {
@@ -98,7 +98,7 @@ export function DataTablePagination<TData>({
 
         {/* Indicador de página */}
         <div className="flex min-w-[100px] items-center justify-center text-sm font-medium">
-          Page {totalRows === 0 ? 0 : pageIndex + 1} of {pageCount}
+          Página {totalRows === 0 ? 0 : pageIndex + 1} de {pageCount}
         </div>
 
         {/* Botones de navegación */}
@@ -109,8 +109,8 @@ export function DataTablePagination<TData>({
             className="hidden size-8 lg:flex"
             onClick={() => table.setPageIndex(0)}
             disabled={!canPreviousPage}
-            aria-label="Go to first page"
-            title="First page">
+            aria-label="Ir a la primera página"
+            title="Primera página">
             <ChevronsLeft className="size-4" />
           </Button>
           <Button
@@ -129,8 +129,8 @@ export function DataTablePagination<TData>({
             className="size-8"
             onClick={() => table.nextPage()}
             disabled={!canNextPage}
-            aria-label="Go to next page"
-            title="Next page">
+            aria-label="Página siguiente"
+            title="Página siguiente">
             <ChevronRight className="size-4" />
           </Button>
           <Button
@@ -139,8 +139,8 @@ export function DataTablePagination<TData>({
             className="hidden size-8 lg:flex"
             onClick={() => table.setPageIndex(pageCount - 1)}
             disabled={!canNextPage}
-            aria-label="Go to last page"
-            title="Last page">
+            aria-label="Ir a la última página"
+            title="Última página">
             <ChevronsRight className="size-4" />
           </Button>
         </div>

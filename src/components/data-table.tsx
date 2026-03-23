@@ -35,6 +35,10 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
   loading: boolean;
   onEdit: (row: TData) => void;
+  /** Texto bajo el spinner (p. ej. contexto de la pantalla). */
+  loadingLabel?: string;
+  /** Mensaje cuando no hay filas (p. ej. indicar cómo crear el primer registro). */
+  emptyDescription?: string;
 }
 
 export function DataTable<TData, TValue>({
@@ -42,6 +46,8 @@ export function DataTable<TData, TValue>({
   data,
   loading,
   onEdit,
+  loadingLabel = "Cargando…",
+  emptyDescription = "No hay datos para mostrar.",
 }: DataTableProps<TData, TValue>) {
   const [ sorting, setSorting ] = React.useState<SortingState>([]);
   const [ columnFilters, setColumnFilters ] = React.useState<ColumnFiltersState>(
@@ -110,9 +116,7 @@ export function DataTable<TData, TValue>({
                   className="h-32 text-center">
                   <div className="flex flex-col items-center justify-center gap-2">
                     <Loader2 className="text-muted-foreground size-6 animate-spin" />
-                    <p className="text-muted-foreground text-sm">
-                      Loading data...
-                    </p>
+                    <p className="text-muted-foreground text-sm">{loadingLabel}</p>
                   </div>
                 </TableCell>
               </TableRow>
@@ -124,7 +128,9 @@ export function DataTable<TData, TValue>({
                   className="h-32 text-center">
                   <div className="flex flex-col items-center gap-2">
                     <FileSearch className="text-muted-foreground size-8" />
-                    <p className="text-muted-foreground text-sm">No results.</p>
+                    <p className="text-muted-foreground text-sm max-w-sm mx-auto">
+                      {emptyDescription}
+                    </p>
                   </div>
                 </TableCell>
               </TableRow>
